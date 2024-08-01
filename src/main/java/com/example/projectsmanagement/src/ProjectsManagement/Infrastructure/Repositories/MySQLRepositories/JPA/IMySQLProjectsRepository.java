@@ -10,6 +10,6 @@ public interface IMySQLProjectsRepository extends JpaRepository<ProjectsModel, L
     @Query(value = "SELECT * FROM projects WHERE id = :id ;", nativeQuery = true)
     ProjectsModel getProjectsById(Long id);
 
-    @Query(value = "SELECT * FROM projects WHERE id = :uuid ;", nativeQuery = true)
+    @Query(value = "SELECT * FROM projects WHERE uuid = :uuid ;", nativeQuery = true)
     ProjectsModel getProjectsByUuid(String uuid);
 }
