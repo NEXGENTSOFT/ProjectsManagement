@@ -4,6 +4,7 @@ import com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.Cont
 import com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.DTOS.Requests.CreateProjectsRequest;
 import com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.DTOS.Requests.UpdateProjectRequest;
 import com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.DTOS.Responses.BaseResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class ProjectsRoute {
     DeleteProjectsController deleteController;
 
     @PostMapping
-    public BaseResponse createProject(@RequestBody CreateProjectsRequest request ){ return createController.run(request); }
+    public BaseResponse createProject(@RequestBody CreateProjectsRequest request ) throws JsonProcessingException, InterruptedException { return createController.run(request); }
 
     @GetMapping
     public BaseResponse getAllProjects() { return listController.run(); }

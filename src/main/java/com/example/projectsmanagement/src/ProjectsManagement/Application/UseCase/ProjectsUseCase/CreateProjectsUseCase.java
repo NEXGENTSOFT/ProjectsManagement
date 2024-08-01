@@ -5,7 +5,9 @@ import com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.DTOS
 import com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.DTOS.Responses.BaseResponse;
 import com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.Models.ProjectsModel;
 import com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.Repositories.MySQLRepositories.MySQLProjectsRepository;
+import com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.Services.CreateDescriptionSagaProducer;
 import com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.Services.CreateProjectUserProducer;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,8 +19,12 @@ public class CreateProjectsUseCase {
     @Autowired
     CreateProjectUserProducer producer;
 
-    public BaseResponse run(CreateProjectsRequest request){
-        Projects project = new Projects(request.getName(), request.getDescription());
+    @Autowired
+    CreateDescriptionSagaProducer sagaProducer;
+
+    public BaseResponse run(CreateProjectsRequest request) throws JsonProcessingException, InterruptedException {
+        String desciption = sagaProducer.run(request.getDescription());
+        Projects project = new Projects(request.getName(), desciption);
         BaseResponse response = repository.addProject(project);
         if (response.getSuccess()){
             long id = 0;

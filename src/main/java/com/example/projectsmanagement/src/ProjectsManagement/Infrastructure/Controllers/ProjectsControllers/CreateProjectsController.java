@@ -3,6 +3,7 @@ package com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.Con
 import com.example.projectsmanagement.src.ProjectsManagement.Application.UseCase.ProjectsUseCase.CreateProjectsUseCase;
 import com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.DTOS.Requests.CreateProjectsRequest;
 import com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.DTOS.Responses.BaseResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,5 +12,5 @@ public class CreateProjectsController {
     @Autowired
     CreateProjectsUseCase useCase;
     
-    public BaseResponse run(CreateProjectsRequest request){ return useCase.run(request); }
+    public BaseResponse run(CreateProjectsRequest request) throws JsonProcessingException, InterruptedException { return useCase.run(request); }
 }
