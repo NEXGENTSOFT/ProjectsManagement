@@ -17,7 +17,6 @@ public class DeletePhotosUseCase {
     AmazonS3Service s3Service;
 
     public BaseResponse run(DeleteFileRequest request){
-        s3Service.deleteFileByUrl(request.getFileUrl());
         return port.deletePhoto(request.getFileUuid());
     }
 }

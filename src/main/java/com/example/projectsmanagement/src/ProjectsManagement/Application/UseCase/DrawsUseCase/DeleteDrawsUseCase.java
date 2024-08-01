@@ -16,8 +16,6 @@ public class DeleteDrawsUseCase {
     AmazonS3Service s3Service;
 
     public BaseResponse run(DeleteFileRequest request){
-        BaseResponse response = port.deleteDraw(request.getFileUuid());
-        s3Service.deleteFileByUrl(request.getFileUrl());
-        return response;
+        return port.deleteDraw(request.getFileUuid());
     }
 }
