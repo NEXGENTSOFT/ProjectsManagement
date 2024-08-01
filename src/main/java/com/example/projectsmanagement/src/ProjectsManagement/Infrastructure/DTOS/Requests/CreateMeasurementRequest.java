@@ -9,7 +9,6 @@ public class CreateMeasurementRequest {
     private float minus;
     private float fixedLevel;
     private float plus;
-    private float height;
     private String notes;
     private Long projectId;
 }

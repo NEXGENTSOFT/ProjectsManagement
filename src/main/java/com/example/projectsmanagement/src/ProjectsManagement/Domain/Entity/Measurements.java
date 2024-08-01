@@ -14,13 +14,13 @@ public class Measurements {
     private String notes;
     private Long projectId;
 
-    public Measurements(String station, float minus, float fixedLevel, float plus, float height, String notes, Long projectId) {
+    public Measurements(String station, float minus, float fixedLevel, float plus, String notes, Long projectId) {
         this.uuid = UUID.randomUUID().toString();
         this.station = station;
         this.minus = minus;
         this.fixedLevel = fixedLevel;
         this.plus = plus;
-        this.height = height;
+        this.height = fixedLevel - minus + plus;
         this.notes = notes;
         this.projectId = projectId;
     }

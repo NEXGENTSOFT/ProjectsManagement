@@ -5,6 +5,7 @@ import com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.DTOS
 import com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.DTOS.Requests.UpdateMeasurementRequest;
 import com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.DTOS.Responses.BaseResponse;
 import com.example.projectsmanagement.src.ProjectsManagement.Infrastructure.Services.AmazonS3Service;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public class MeasurementsRoute {
     AmazonS3Service s3Service;
 
     @PostMapping
-    public BaseResponse create(@RequestBody CreateMeasurementRequest request){ return createController.run(request); }
+    public BaseResponse create(@RequestBody CreateMeasurementRequest request) throws JsonProcessingException, InterruptedException { return createController.run(request); }
 
     @GetMapping("/find/{uuid}")
     public BaseResponse get(@PathVariable String uuid){ return getController.run(uuid); }
@@ -39,7 +40,7 @@ public class MeasurementsRoute {
     public BaseResponse list(@PathVariable Long id){ return listController.run(id); }
 
     @PutMapping
-    public BaseResponse update(@RequestBody UpdateMeasurementRequest request){ return updateController.run(request); }
+    public BaseResponse update(@RequestBody UpdateMeasurementRequest request) throws JsonProcessingException, InterruptedException { return updateController.run(request); }
 
     @DeleteMapping("/{uuid}")
     public BaseResponse delete(@PathVariable String uuid){ return deleteController.run(uuid); }

@@ -36,7 +36,7 @@ public class ProjectsRoute {
     public BaseResponse getProjectByUuid(@PathVariable String uuid){ return  getByUuidController.run(uuid); }
 
     @PutMapping
-    public BaseResponse updateProject(@RequestBody UpdateProjectRequest request){ return updateController.run(request); }
+    public BaseResponse updateProject(@RequestBody UpdateProjectRequest request) throws JsonProcessingException, InterruptedException { return updateController.run(request); }
 
     @DeleteMapping("/{uuid}")
     public BaseResponse deleteProject(@PathVariable String uuid){ return deleteController.run(uuid); }
